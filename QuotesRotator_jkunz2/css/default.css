@@ -104,3 +104,29 @@ a:hover {
 	float: right;
 }
 
+.container > header nav a {
+	display: block;
+	float: left;
+	position: relative;
+	width: 2.5em;
+	height: 2.5em;
+	background: #fff;
+	color: transparent;
+	margin: 0 0 .1em;
+	border: .25em solid #47a3da;
+	border-radius: 50%;
+	text-indent: -8000px;
+}
+
+.container > header nav a::after {
+	content: attr(data-info);
+	color: #47a3da;
+	width: 600%;
+	position: absolute;
+	top: 120%;
+	right: 0;
+	text-align: right;
+	opacity: 1;
+	pointer-events: none;
+	
+}
