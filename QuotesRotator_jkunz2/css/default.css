@@ -126,7 +126,44 @@ a:hover {
 	top: 120%;
 	right: 0;
 	text-align: right;
-	opacity: 1;
+	opacity: 0;
 	pointer-events: none;
-	
+}
+
+.container > header nav a:hover{
+	background: #47a3da;
+}
+
+.container > header nav a:hover::after{
+	transition: opacity 1s;
+	opacity: 1;
+}
+
+/* Icons using font awesome */
+
+.icon-drop::before,
+.icon-arrow-left::before{
+	font-family: 'fontawesome';
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	text-indent: 8000px;
+	color: #47a3da;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 2;
+	padding-left: .5em;
+}
+
+.icon-drop::before{
+	content: '\e000';
+}
+
+.icon-arrow-left::before{
+	content: '\f060';
+}
+
+.container > header nav a:hover::before{
+	color: #fff;
 }

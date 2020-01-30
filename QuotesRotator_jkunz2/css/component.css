@@ -1,0 +1,82 @@
+.quoteRotator{
+    position: relative;
+    margin: 3em auto 5em;
+    max-width: 50em;
+    width: 100%;
+    min-height: 24em;
+}
+
+.quoteContent{
+    position: absolute;
+    min-height: 12.5em;
+    border-top: 1px solid #f4f4f4;
+    border-bottom: 1px solid #f4f4f4;
+    padding: 2em 0;
+    z-index: 0;
+    width: 100%;
+    opacity: 0;
+}
+
+.no-js .quoteRotator .quoteContent {
+    border-bottom: none;
+}
+
+.quoteContent.quoteCurrent, .no-js .quoteRotator .quoteContent{
+    position: relative;
+    z-index: 100;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.quoteProgress{
+    position: absolute;
+    top: 0;
+    background: #47a3da;
+    width: 0%;
+    height: 1px;
+    z-index: 1000;
+}
+
+.quoteContent img{
+    float: right;
+    margin-left: 3em;
+}
+
+.quoteContent blockquote{
+    margin: 0;
+    padding: 0;
+}
+
+.quoteContent blockquote p{
+    font-size: 2em;
+    color: #888;
+    font-weight: 300;
+    margin: .4em 0 1em;
+}
+
+.quoteContent blockquote footer{
+    font-size: 1.2em;
+}
+
+.quoteContent blockquote footer::before{
+    content: '- ';
+}
+
+/* Media Query breakpoint 640px */
+
+@media screen and (max-width: 40rem){
+
+    .quoteRotator{
+        font-size: 70%;
+    }
+
+    .quoteContent img {
+        width: 5em;
+    }
+
+}
+
+/* Temp */
+/* .quoteContent:first-child{
+    opacity: 1;
+} */
