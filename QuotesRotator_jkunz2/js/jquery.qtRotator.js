@@ -25,6 +25,19 @@
 
     //Define property of our plugin object
 
+    //inefficient since the prototype property is not used to define the object's methods
+    // $.QTRotator._init = function (options) {
+
+    // }
+
+    $.QTRotator.prototype = {
+
+        _init: function (options) {
+            this.mergedOptions = $.extend($.QTRotator.defaults, options);
+            console.log(`${this.mergedOptions.speed} \n${this.mergedOptions.easing} \n${this.mergedOptions.interval}`)
+        }
+    };
+
 
     //Define methods of our plugin object
 
