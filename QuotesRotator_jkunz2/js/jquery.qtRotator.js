@@ -34,8 +34,109 @@
 
         _init: function (options) {
             this.mergedOptions = $.extend($.QTRotator.defaults, options);
-            console.log(`${this.mergedOptions.speed} \n${this.mergedOptions.easing} \n${this.mergedOptions.interval}`)
+            //console.log(`${this.mergedOptions.speed} \n${this.mergedOptions.easing} \n${this.mergedOptions.interval}`)
+
+            this.$items = $(".quoteContent");
+            this.itemsCount = this.$items.length;
+            //console.log(`The length is ${this.itemsCount}`);
+
+            //property used to determine which div.quoteContent is showing
+            this.currentIndex = 3;
+
+            $.QTRotator.support = Modernizr.csstransitions;
+
+            if ($.QTRotator.support) {
+                // The users browser supports CSS transition property
+                this.$progressBar = $('<span class="quoteProgress"></span>').appendTo(this.$element);
+            }
+            else {
+                //users browser does not support css transions property
+                //MARK: do some alternative logic here
+            }
+
+            //show the current quote
+            //reduce the jquery object down to just 1 in the node list.
+            this.$items.eq(this.currentIndex).addClass('quoteCurrent');
+
+            if ($.QTRotator.support) {
+                this._setTransition();
+            }
+
+            //start rotating the quotes
+            this._startRotator();
+        },
+
+        _setTransition: function () {
+            // Use setTimeout() method to create a very short delay before we set a transition property
+            // on our div.quoteContent element.
+
+            /*
+            in a .css file a css transition looks like the following
+            .quoteContent {
+                color: green;
+                opacity: 0;
+                transition: opacity 2s [easing], attribute durationg [easing];
+
+                transition: opacity 1s ease-in-out, color 2s;
+            }
+            */
+
+            setTimeout($.proxy(function () {
+                this.$items.css('transition', `opacity ${this.mergedOptions.speed}ms  ${this.mergedOptions.easing}`);
+            }, this), 25);
+        },
+
+        _startRotator: function () {
+
+            //animate the progress bar
+            if ($.QTRotator.support) {
+                this._startProgressBar();
+            }
+
+            //rotate the quote
+            setTimeout($.proxy(function () {
+
+                //reset the progress bar
+                if ($.QTRotator.support) {
+                    this._resetProgressBar();
+                }
+
+                //bring in the next quote
+                this._nextQuote();
+
+                //reset timer recursively
+
+            }, this), this.mergedOptions.interval + 25);
+        },
+
+        _startProgressBar: function () {
+
+            setTimeout($.proxy(function () {
+                this.$progressBar.css({
+                    transition: `width ${this.mergedOptions.interval}ms linear`,
+                    width: '100%'
+                });
+            }, this), 25);
+
+        },
+
+        _resetProgressBar: function () {
+
+            this.$progressBar.css({
+                transition: `none`,
+                width: '0%'
+            });
+        },
+
+        _nextQuote: function () {
+
+            //Hide the current quote
+
+            //get the index of the next quote 
+
+            //show the next quote
         }
+
     };
 
 
