@@ -41,7 +41,7 @@
             //console.log(`The length is ${this.itemsCount}`);
 
             //property used to determine which div.quoteContent is showing
-            this.currentIndex = 3;
+            this.currentIndex = 0;
 
             $.QTRotator.support = Modernizr.csstransitions;
 
@@ -105,6 +105,7 @@
                 this._nextQuote();
 
                 //reset timer recursively
+                this._startRotator();
 
             }, this), this.mergedOptions.interval + 25);
         },
@@ -131,10 +132,15 @@
         _nextQuote: function () {
 
             //Hide the current quote
+            this.$items.eq(this.currentIndex).removeClass('quoteCurrent');
+
 
             //get the index of the next quote 
+            this.currentIndex = (this.currentIndex < this.itemsCount - 1) ? this.currentIndex + 1 : 0;
 
             //show the next quote
+            this.$items.eq(this.currentIndex).addClass('quoteCurrent');
+
         }
 
     };

@@ -21,7 +21,8 @@
     border-bottom: none;
 }
 
-.quoteContent.quoteCurrent, .no-js .quoteRotator .quoteContent{
+.quoteContent.quoteCurrent, 
+.no-js .quoteRotator .quoteContent{
     position: relative;
     z-index: 100;
     opacity: 1;
